@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Friend 1</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="container">
+      <header>
+        <nav class="fixed-nav">
+          <ul>
+              <li><a href="/">Home</a></li>
+              <li><a href="/best-friends">All Friends</a></li>
+              <li><a href="/best-friends/Friend1">Friend1's Page</a></li>
+          </ul>
+      </nav>
+    </header>
+    <main>
+      <h1></h1> <!-- Header will be set dynamically -->
+      <p>
+        Enjoy some of my favorite memories of us.
+      </p>
+      <section id="friends" class="fade-in">
+        <ul class="friend-links">
+          <li><a href="https://drive.google.com/drive/folders/1f9fFkvNrh653VttQfGXJzGby0Bs2Xc_i?usp=drive_link" target="_blank">Google Drive</a></li>
+        </ul>
+    </section>
+      <div class="gallery" id="gallery"></div> <!-- Image gallery -->
+    </main>
+        <section class="gallery">
+          <script src="/friend.js" defer></script> <!-- Corrected path to script.js -->
+          <script>
+              document.addEventListener('DOMContentLoaded', () => {
+                  const name = 'Jonah'; // Set the friend name for the current page
+                  
+                  // Set the title and heading dynamically
+                  document.title = `${name}'s Pictures`; // Set the title
+                  document.querySelector('h1').textContent = `Hi ${name}!`; // Set the heading
+      
+                  fetchImages(name); // Call the function to load images for this friend
+              });
+          </script>
+        </section>
+
+        <footer>
+            <p>&copy; 2024 Mason DeVries. All rights reserved.</p>
+        </footer>
+    </div>
+  <script src="/friend.js" defer></script>
+</body>
+</html>
+
+<!-- from masondv.com -->
