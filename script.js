@@ -1,27 +1,3 @@
-const apiKey = 'AIzaSyBBaesZiljQnifo0LD-OND2TwbsNDEO2n4'; // Replace with your API key
-const folderIds = {
-    Cat: '1RKMOjPVY9tgwh4X7mmFw4yv0ikY42k21',
-    Dallas: '1gEB8x-AzRPi8wIc4IZi8LdnqsTfIUqli',
-    Fallan: '1D-4wXbcGBlyTXuessbHvlSYnVSbGma2X',
-    Griffen: '19mVUBoJIIx973K9_ZCrSDZPMOlhi9l89',
-    Ian: '1QTjWjT4KkuCWO7QpdoVHlBaFbexYbhym',
-    Jack: '1mjSKBTwLSXmsbS1FVFGh0fFxYB0toUOB',
-    Jonah: '1f9fFkvNrh653VttQfGXJzGby0Bs2Xc_i',
-    Kenna: '1kUtrCaAblL0aLilzYb62JuBRtggoV8dQ',
-    Kian: '1DG5p1bCO-fcaZA_tTT9cz7doVomBiza4',
-    Mason: '1qDTd7JGfLgTUPlXcJiFmP7xrnv8kuyO6',
-    Tuxin: '1F3xSfY9p6lz7Uh1Yk-xfHMImOZT3dDAj'
-};
-
-const imgWidth = 500;
-
-function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]]; // Swap elements
-    }
-}
-
 async function fetchImages(friend) {
     const galleryId = folderIds[friend];
     console.log(`Fetching images from folder: ${galleryId}`);
@@ -41,7 +17,7 @@ async function fetchImages(friend) {
     // Clear existing content in the gallery
     gallery.innerHTML = '';
 
-    // Create two columns 
+    // Create two columns
     const column1 = document.createElement('div');
     const column2 = document.createElement('div');
     column1.className = 'column';
@@ -61,15 +37,26 @@ async function fetchImages(friend) {
 
     // Distribute images alternately between the two columns
     data.files.forEach((file, index) => {
+        // Create the anchor element
+        const anchor = document.createElement('a');
+        anchor.href = `https://drive.google.com/file/d/${file.id}/view`; // Link to the full-size image
+        anchor.target = '_blank'; // Open in a new tab
+
+        // Create the image element
         const imgElement = document.createElement('img');
         imgElement.src = `https://drive.google.com/thumbnail?id=${file.id}&sz=h${imgWidth}`;
         imgElement.alt = file.name;
 
+        // Append the image to the anchor
+        anchor.appendChild(imgElement);
+
+        // Append the anchor to the appropriate column
         if (index % 2 === 0) {
-            column1.appendChild(imgElement);
+            column1.appendChild(anchor);
         } else {
-            column2.appendChild(imgElement);
+            column2.appendChild(anchor);
         }
-        console.log(`Image added to column ${index % 2 === 0 ? 1 : 2}: ${file.name}`);
+
+        console.log(`Clickable image added to column ${index % 2 === 0 ? 1 : 2}: ${file.name}`);
     });
 }

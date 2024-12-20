@@ -56,7 +56,7 @@ button:hover {
 .gallery {
   display: flex;
   justify-content: space-between; /* Space between columns */
-  gap: 20px;                     /* Optional spacing */
+  gap: 10px;                     /* Optional spacing */
   padding: 20px;
 }
 
