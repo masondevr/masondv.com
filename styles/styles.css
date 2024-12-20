@@ -98,7 +98,7 @@ button:hover {
   width: auto;            /* Maintain aspect ratio */
   height: auto;           /* Maintain aspect ratio */
   max-width: 100%;        /* Fit within the modal */
-  max-height: 100%;       /* Fit within the modal */
+  max-height: 85%;       /* Fit within the modal */
   border-radius: 6px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
