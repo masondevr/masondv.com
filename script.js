@@ -41,6 +41,23 @@ async function fetchImages(friend) {
     // Clear existing content in the gallery
     gallery.innerHTML = '';
 
+    // Create modal elements
+    const modal = document.createElement('div');
+    modal.id = 'imageModal';
+    modal.style.display = 'none'; // Initially hidden
+    modal.innerHTML = `
+        <div class="modal-content">
+            <span id="closeModal" class="close">&times;</span>
+            <img id="modalImage" src="" alt="Full-size image">
+        </div>
+    `;
+    document.body.appendChild(modal);
+
+    // Event listener to close the modal
+    document.getElementById('closeModal').addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
+
     // Create two columns
     const column1 = document.createElement('div');
     const column2 = document.createElement('div');
@@ -61,27 +78,26 @@ async function fetchImages(friend) {
 
     // Distribute images alternately between the two columns
     data.files.forEach((file, index) => {
-        // Create the anchor element
-        const anchor = document.createElement('a');
-        anchor.href = `https://drive.google.com/file/d/${file.id}/view`; // Link to the full-size image
-        anchor.target = '_blank'; // Open in a new tab
-
         // Create the image element
         const imgElement = document.createElement('img');
         imgElement.src = `https://drive.google.com/thumbnail?id=${file.id}&sz=h${imgWidth}`;
         imgElement.alt = file.name;
+        imgElement.className = 'gallery-image';
 
-        // Append the image to the anchor
-        anchor.appendChild(imgElement);
+        // Add click event to show the modal with the full-size image
+        imgElement.addEventListener('click', () => {
+            const modalImage = document.getElementById('modalImage');
+            modalImage.src = `https://drive.google.com/uc?id=${file.id}`;
+            modal.style.display = 'block';
+        });
 
-        // Append the anchor to the appropriate column
+        // Append the image to the appropriate column
         if (index % 2 === 0) {
-            column1.appendChild(anchor);
+            column1.appendChild(imgElement);
         } else {
-            column2.appendChild(anchor);
+            column2.appendChild(imgElement);
         }
 
-        console.log(`Clickable image added to column ${index % 2 === 0 ? 1 : 2}: ${file.name}`);
+        console.log(`Image added to column ${index % 2 === 0 ? 1 : 2}: ${file.name}`);
     });
 }
-
