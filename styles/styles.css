@@ -53,19 +53,22 @@ button:hover {
   background-color: #218838; /* Change button background on hover */
 }
 
-/* General styles for the gallery */
 .gallery {
-  display: flex;               /* Use flexbox for layout */
-  flex-wrap: wrap;            /* Allow wrapping of images */
-  gap: 10px;                  /* Space between images */
-  justify-content: center;     /* Center the images */
-  padding: 20px;              /* Padding around the gallery */
+  display: flex;
+  justify-content: space-between; /* Space between columns */
+  gap: 20px;                     /* Optional spacing */
+  padding: 20px;
 }
 
-/* Style for individual images */
+.column {
+  display: flex;
+  flex-direction: column;        /* Stack images vertically */
+  gap: 10px;
+}
+
 .gallery img {
-  max-width: auto;            /* Responsive images */
-  height: 100%;               /* Maintain aspect ratio */
-  border-radius: 6px;         /* Rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  width: 100%;                   /* Responsive images */
+  height: auto;                  /* Maintain aspect ratio */
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

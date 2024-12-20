@@ -1,6 +1,6 @@
 const apiKey = 'AIzaSyBBaesZiljQnifo0LD-OND2TwbsNDEO2n4'; // Replace with your API key
 const folderIds = {
-    Cat: '1RKMOjPVY9tgwh4X7mmFw4yv0ikY42k21', 
+    Cat: '1RKMOjPVY9tgwh4X7mmFw4yv0ikY42k21',
     Dallas: '1gEB8x-AzRPi8wIc4IZi8LdnqsTfIUqli',
     Fallan: '1D-4wXbcGBlyTXuessbHvlSYnVSbGma2X',
     Griffen: '19mVUBoJIIx973K9_ZCrSDZPMOlhi9l89',
@@ -28,35 +28,48 @@ async function fetchImages(friend) {
     
     const response = await fetch(`https://www.googleapis.com/drive/v3/files?q='${galleryId}'+in+parents&key=${apiKey}&fields=files(id,name)`);
     
-    // Check if the response is okay
     if (!response.ok) {
         console.error('Error fetching images:', response.statusText);
         return;
     }
     
     const data = await response.json();
-    console.log('Data received:', data); // Log the data received from API
+    console.log('Data received:', data);
+
     const gallery = document.getElementById('gallery');
 
-    // Clear existing images in case of re-fetch
+    // Clear existing content in the gallery
     gallery.innerHTML = '';
 
-    // Check if there are any files
+    // Create two columns
+    const column1 = document.createElement('div');
+    const column2 = document.createElement('div');
+    column1.className = 'column';
+    column2.className = 'column';
+
+    gallery.appendChild(column1);
+    gallery.appendChild(column2);
+
     if (data.files.length === 0) {
-        gallery.innerHTML = '<p>No images found.</p>'; // Message if no images are found
+        gallery.innerHTML = '<p>No images found.</p>';
         console.log('No images found in the folder.');
         return;
     }
 
-    // Shuffle the array of files
+    // Shuffle images
     shuffleArray(data.files);
 
-    // Loop through the shuffled files and create image elements
-    data.files.forEach(file => {
+    // Distribute images alternately between the two columns
+    data.files.forEach((file, index) => {
         const imgElement = document.createElement('img');
         imgElement.src = `https://drive.google.com/thumbnail?id=${file.id}&sz=h${imgWidth}`;
         imgElement.alt = file.name;
-        gallery.appendChild(imgElement);
-        console.log(`Image added: ${file.name}`); // Log each added image
+
+        if (index % 2 === 0) {
+            column1.appendChild(imgElement);
+        } else {
+            column2.appendChild(imgElement);
+        }
+        console.log(`Image added to column ${index % 2 === 0 ? 1 : 2}: ${file.name}`);
     });
 }
