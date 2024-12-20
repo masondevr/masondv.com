@@ -1,3 +1,27 @@
+const apiKey = 'AIzaSyBBaesZiljQnifo0LD-OND2TwbsNDEO2n4'; // Replace with your API key
+const folderIds = {
+    Cat: '1RKMOjPVY9tgwh4X7mmFw4yv0ikY42k21',
+    Dallas: '1gEB8x-AzRPi8wIc4IZi8LdnqsTfIUqli',
+    Fallan: '1D-4wXbcGBlyTXuessbHvlSYnVSbGma2X',
+    Griffen: '19mVUBoJIIx973K9_ZCrSDZPMOlhi9l89',
+    Ian: '1QTjWjT4KkuCWO7QpdoVHlBaFbexYbhym',
+    Jack: '1mjSKBTwLSXmsbS1FVFGh0fFxYB0toUOB',
+    Jonah: '1f9fFkvNrh653VttQfGXJzGby0Bs2Xc_i',
+    Kenna: '1kUtrCaAblL0aLilzYb62JuBRtggoV8dQ',
+    Kian: '1DG5p1bCO-fcaZA_tTT9cz7doVomBiza4',
+    Mason: '1qDTd7JGfLgTUPlXcJiFmP7xrnv8kuyO6',
+    Tuxin: '1F3xSfY9p6lz7Uh1Yk-xfHMImOZT3dDAj'
+};
+
+const imgWidth = 500;
+
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+    }
+}
+
 async function fetchImages(friend) {
     const galleryId = folderIds[friend];
     console.log(`Fetching images from folder: ${galleryId}`);
@@ -60,3 +84,4 @@ async function fetchImages(friend) {
         console.log(`Clickable image added to column ${index % 2 === 0 ? 1 : 2}: ${file.name}`);
     });
 }
+
