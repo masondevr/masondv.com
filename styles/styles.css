@@ -82,9 +82,9 @@ button:hover {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.8);
   display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000; /* Ensure it's on top of everything */
+  justify-content: center; /* Horizontally center content */
+  align-items: center;    /* Vertically center content */
+  z-index: 1000;
 }
 
 /* Modal content */
@@ -95,8 +95,10 @@ button:hover {
 }
 
 .modal-content img {
-  width: 100%;
-  height: auto;
+  width: auto;            /* Maintain aspect ratio */
+  height: auto;           /* Maintain aspect ratio */
+  max-width: 100%;        /* Fit within the modal */
+  max-height: 100%;       /* Fit within the modal */
   border-radius: 6px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
