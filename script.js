@@ -89,7 +89,7 @@ async function fetchImages(friend) {
             const modalImage = document.getElementById('modalImage');
             modalImage.src = `https://drive.google.com/thumbnail?id=${file.id}&sz=h${imgWidth * 2}`; // Larger size for modal
             modalImage.alt = file.name; // Add alt for accessibility
-            modal.style.display = 'block';
+            modal.style.display = 'flex';
         });
 
         // Append the image to the appropriate column
