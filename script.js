@@ -41,7 +41,7 @@ async function fetchImages(friend) {
     // Clear existing content in the gallery
     gallery.innerHTML = '';
 
-    // Create two columns
+    // Create two columns 
     const column1 = document.createElement('div');
     const column2 = document.createElement('div');
     column1.className = 'column';
