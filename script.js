@@ -84,11 +84,10 @@ async function fetchImages(friend) {
         imgElement.alt = file.name;
         imgElement.className = 'gallery-image';
 
-        // Add click event to show the modal with the full-size image
+        // Add click event to show the modal with the thumbnail image
         imgElement.addEventListener('click', () => {
             const modalImage = document.getElementById('modalImage');
-            // Use the direct file link for the modal image
-            modalImage.src = `https://drive.google.com/uc?id=${file.id}`;
+            modalImage.src = `https://drive.google.com/thumbnail?id=${file.id}&sz=h${imgWidth * 2}`; // Larger size for modal
             modalImage.alt = file.name; // Add alt for accessibility
             modal.style.display = 'block';
         });
