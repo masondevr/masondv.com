@@ -78,7 +78,7 @@ async function fetchImages(friend) {
 
     // Distribute images alternately between the two columns
     data.files.forEach((file, index) => {
-        // Create the image element
+        // Create the image element for the gallery
         const imgElement = document.createElement('img');
         imgElement.src = `https://drive.google.com/thumbnail?id=${file.id}&sz=h${imgWidth}`;
         imgElement.alt = file.name;
@@ -87,7 +87,9 @@ async function fetchImages(friend) {
         // Add click event to show the modal with the full-size image
         imgElement.addEventListener('click', () => {
             const modalImage = document.getElementById('modalImage');
+            // Use the direct file link for the modal image
             modalImage.src = `https://drive.google.com/uc?id=${file.id}`;
+            modalImage.alt = file.name; // Add alt for accessibility
             modal.style.display = 'block';
         });
 
@@ -101,3 +103,4 @@ async function fetchImages(friend) {
         console.log(`Image added to column ${index % 2 === 0 ? 1 : 2}: ${file.name}`);
     });
 }
+
