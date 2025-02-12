@@ -10,7 +10,8 @@ const folderIds = {
     Kenna: '1kUtrCaAblL0aLilzYb62JuBRtggoV8dQ',
     Kian: '1DG5p1bCO-fcaZA_tTT9cz7doVomBiza4',
     Mason: '1qDTd7JGfLgTUPlXcJiFmP7xrnv8kuyO6',
-    Tuxin: '1F3xSfY9p6lz7Uh1Yk-xfHMImOZT3dDAj'
+    Tuxin: '1F3xSfY9p6lz7Uh1Yk-xfHMImOZT3dDAj',
+    Sofia: '1I63Wf5hAnhyktJ0DPoYTZUSFy9ENQpDp'
 };
 
 const imgWidth = 500;
